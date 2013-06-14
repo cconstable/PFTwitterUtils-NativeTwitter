@@ -15,7 +15,7 @@ Native Twitter log in is a bit complicated so there are a few steps you need to 
 
 First, provide a success handler (this is pretty standard).
 
-```
+```obj-c
 // Handle Success
 [PFTwitterUtils setNativeLogInSuccessBlock:^(PFUser *user, NSString *userTwitterId, NSError *error) {
     // Store user information...
@@ -24,7 +24,7 @@ First, provide a success handler (this is pretty standard).
 
 The second step, is to actually request the Twitter accounts that are stored on the device. You'll most likely want to show the user a list of the accounts so they can choose which account they want to log into. This is an array of `ACAccount` objects. You can get the Twitter username by using the `username` property.
  
-```
+```obj-c
 // Get twitter accounts on device (this will prompt the user)
 [PFTwitterUtils getTwitterAccounts:^(NSArray *twitterAccounts) {
 	// Some method that displays an action sheet...
@@ -34,13 +34,13 @@ The second step, is to actually request the Twitter accounts that are stored on 
 
 Lastly, you'll want to give an account back to `PFTwitterUtils` to log in.
 
-```
+```obj-c
 [PFTwitterUtils logInWithAccount:twitterAccount];
 ```
 
 Optionally, you can handle your own errors using `setNativeLogInErrorBlock:`
 
-```
+```obj-c
 // Handle errors. This block is optional. PFTwitterUtils+NativeTwitter will provide default messages for all
 // the types of errors we may encounter. Here we are customizing the way the user is presented the error.
 [PFTwitterUtils setNativeLogInErrorBlock:^(TwitterLogInError logInError) {
